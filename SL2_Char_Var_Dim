@@ -10,7 +10,7 @@ def dim_SL2_char_var(name):
     G = M.fundamental_group()
     I = G.character_variety_vars_and_polys('as_ideal')
     J = radical(I)
-    return [name,str(J.dimension())]
+    return str(J.dimension())
 
 def compute_homology(name):
     M = snappy.Manifold(name)
