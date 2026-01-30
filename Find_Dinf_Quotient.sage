@@ -1,5 +1,5 @@
 import snappy
-import Filter_QHS3.sage
+# import Filter_QHS3.sage
 
 def substitute(word,hom):
     """
@@ -7,7 +7,7 @@ def substitute(word,hom):
     Output: The image of word under the homomorphism
     """
     new_word = ""
-    if length(hom) == 2:
+    if len(hom) == 2:
         for letter in word:
             if letter == "a":
                 new_word += hom[0]
