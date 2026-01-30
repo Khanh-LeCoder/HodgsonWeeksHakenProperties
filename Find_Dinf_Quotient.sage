@@ -17,7 +17,7 @@ def substitute(word,hom):
                 new_word += hom[1]
             elif letter == "B":
                 new_word += hom[1][::-1]
-    else length(hom) == 3:
+    else: 
         for letter in word:
             if letter == "a":
                 new_word += hom[0]
