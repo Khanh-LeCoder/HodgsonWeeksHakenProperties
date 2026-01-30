@@ -48,7 +48,7 @@ def sum_b1_deg2cover(name):
   Output: The sum of the betti number of all degree two cover
   """
   M = snappy.Manifold(name)
-  cov2 = M.cover(2)
+  cov2 = M.covers(2)
   
   sum_b1 = 0
   if len(cov2) > 0:
