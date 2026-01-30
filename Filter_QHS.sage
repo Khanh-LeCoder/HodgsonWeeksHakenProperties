@@ -84,9 +84,13 @@ def write_QHS3(file_name):
       M = snappy.Manifold(name)
       volume = str(M.volume())
       homology = str(M.homology())
-      if elem_div_factor(name) >=2 and sum_b1_deg2cover(name) > 0 and is_Dinfty_quotient(name): 
-        with open("Haken_QHS3_data.txt", "a") as open_file: 
-          open_file.write("| " + name + " | " + volume + " | " + homology + " | " + "Yes" + " | " + " |\n")
+      if elem_div_factor(name) >=2 and sum_b1_deg2cover(name) > 0:
+        if is_Dinfty_quotient(name):
+          with open("Haken_QHS3_data.txt", "a") as open_file: 
+            open_file.write("| " + name + " | " + volume + " | " + homology + " | " + "Yes" + " | " + " |\n")
+        else:
+          with open("Haken_QHS3_data.txt", "a") as open_file: 
+            open_file.write("| " + name + " | " + volume + " | " + homology + " | " + "No" + " | " + " |\n")
       elif elem_div_factor(name) >=2 and sum_b1_deg2cover(name) == 0: 
         with open("Haken_QHS3_data.txt", "a") as open_file: 
           open_file.write("| " + name + " | " + volume + " | " + homology + " | " + "No" + " | " + " |\n")
