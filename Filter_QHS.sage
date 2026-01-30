@@ -34,6 +34,15 @@ def is_QHS3(name):
   else:
     pass
 
+def elem_div_factor(name):
+  """
+  Input: The name of a 3-manifold
+  Output: The number of elementary divisors in the first homology
+  """
+  M = snappy.Manifold(name)
+  return len(M.homology().elementary_divisors())
+
+
 def write_QHS3(file_name):
   """
   Input: The name of the file containing the list of 3-manifolds from the census. Assume they are all orientable
@@ -50,7 +59,10 @@ def write_QHS3(file_name):
       M = snappy.Manifold(name)
       volume = str(M.volume())
       homology = str(M.homology())
-      with open("Haken_QHS3_data.txt", "a") as open_file:
-        open_file.write("| " + name + " | " + volume + " | " + homology + " | " + " | " + " |\n")
-      
+      if elem_div_factor(name) >=2:
+        with open("Haken_QHS3_data.txt", "a") as open_file: 
+          open_file.write("| " + name + " | " + volume + " | " + homology + " | " + " | " + " |\n")
+      else:
+        with open("Haken_QHS3_data.txt", "a") as open_file: 
+          open_file.write("| " + name + " | " + volume + " | " + homology + " | " + "No" + " | " + " |\n")
   
