@@ -15,10 +15,10 @@ def read_name(file_name):
   
   mfld_list = []    
   for name in content: 
-    if name.find("\n") != -1
-      mfld_list(append(name[:name.find("\n")]))
+    if name.find("\n") != -1:
+      mfld_list.append(name[:name.find("\n")])
     else:
-      mfld_list(append(name))
+      mfld_list.append(name)
 
   return mfld_list
 
