@@ -1,29 +1,20 @@
 import snappy 
+import time
 
-def dim_SL2_char_var(name):
+def SL2_char_var_ideals(name):
     """
     Input:  The name of a manifold from the Hodson Weeks census
     Output: The dimension of the SL2C character variety of the manifold
     """
-
+    timeout = 60
+    print(name)
     M = snappy.Manifold(name)
     G = M.fundamental_group()
-    I = G.character_variety_vars_and_polys('as_ideal')
-    J = radical(I)
-    return str(J.dimension())
+    start_time = time.time()
+    for _ in range(120):
+        if time.time() - start_time > timeout:
+            break
+        return G.character_variety_vars_and_polys('as_ideal')
+        time.sleep(1)
 
-def compute_homology(name):
-    M = snappy.Manifold(name)
-    return [name,str(M.homology().betti_number())]
 
-res = []
-for name in HakenList:
-    item = compute_homology(name)
-    print(item)
-    res.append(item)
-
-for k in range(31,40):
-    item = res[k]
-    name = item[0]
-    item.append(dim_SL2_char_var(name))
-    print(item)
