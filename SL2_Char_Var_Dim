@@ -39,10 +39,12 @@ def SL2_char_var_ideals(name):
     print(name)
     M = snappy.Manifold(name)
     G = M.fundamental_group()
-    try:
-        result = run_with_timeout(SL2_char_var_ideals(name), timeout=60)
-        print(result)
-    except TimeoutError as e:
-        print("Timed out!")
+    return G.character_variety_vars_and_polys("as_ideals")
+
+try:
+    result = run_with_timeout(SL2_char_var_ideals(name), timeout=60)
+    print(result)
+except TimeoutError as e:
+    print("Timed out!")
 
 
