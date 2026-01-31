@@ -35,14 +35,13 @@ def SL2_char_var_ideals(name):
     Input:  The name of a manifold from the Hodson Weeks census
     Output: The dimension of the SL2C character variety of the manifold
     """
-    timeout = 60
-    print(name)
     M = snappy.Manifold(name)
     G = M.fundamental_group()
-    return G.character_variety_vars_and_polys("as_ideals")
+    I = G.character_variety_vars_and_polys("as_ideals")
+    return I
 
 try:
-    result = run_with_timeout(SL2_char_var_ideals(name), timeout=60)
+    result = run_with_timeout(SL2_char_var_ideals(name), timeout=2)
     print(result)
 except TimeoutError as e:
     print("Timed out!")
