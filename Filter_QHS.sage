@@ -241,13 +241,6 @@ def run_with_timeout(func, *args, timeout):
         raise value
     return value
 
-def find_nth_occurrence(str, char, n):
-    start = str.find(char)
-    while start >= 0 and n > 1:
-        start = str.find(char, start + len(char)) # Use len(ch) for substrings
-        n -= 1
-    return start
-
 def SL2_char_var_ideals(name):
     """
     Input:  The name of a manifold from the Hodson Weeks census
@@ -286,9 +279,31 @@ with open("Haken_QHS3_data.txt", "r") as open_file1:
 with open("SL2_Char_Var_Dim.txt", "r") as open_file2:
     line_lists2 = open_file2.readlines()
 
-len(line_lists1) == len(line_lists2)
+def find_nth_occurrence(str, char, n):
+    start = str.find(char)
+    while start >= 0 and n > 1:
+        start = str.find(char, start + len(char)) # Use len(ch) for substrings
+        n -= 1
+    return start
 
+with open("Haken_QHS3_final_data.txt", "w") as open_file:
+        open_file.write("| Name | Volume | Homology | Dihedral Quotient | Dim SL2C Char. Var. | Algebraic Non-integral |\n|---|---|---|---|---|---|\n")
 
+for index in range(0,len(line_lists2)):
+    line1 = line_lists1[index + 2]
+    line2 = line_lists2[index]
+    vert_bar_idx = find_nth_occurrence(line1, "|", 5)
+    space_idx = find_nth_occurrence(line2, " ", 1)
+    new_line_idx = find_nth_occurrence(line2, "\n", 1)
+    if line2[space_idx+1:space_idx+2] == "E" or line2[space_idx+1:space_idx+2] == "D":
+        result = line1[:vert_bar_idx + 3] + line2[space_idx+1:new_line_idx] + " | " + " |\n"
+    else:
+        result = line1[:vert_bar_idx + 3] + line2[space_idx+1:space_idx+2] + " | " + " |\n"
+    with open("Haken_QHS3_final_data.txt", "a") as open_file:
+        open_file.write(result)
+
+    
+    
     
     
 
