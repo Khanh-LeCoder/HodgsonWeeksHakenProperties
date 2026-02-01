@@ -75,7 +75,109 @@ def filter_QHS3(file_name):
   mfld_list = read_name(file_name)
 
   return [name for name in mfld_list if is_QHS3(name)]
-  
+
+# import Filter_QHS3.sage
+
+def substitute(word,hom):
+    """
+    Input: A word and a candidate homomorphism 
+    Output: The image of word under the homomorphism
+    """
+    new_word = ""
+    if len(hom) == 2:
+        for letter in word:
+            if letter == "a":
+                new_word += hom[0]
+            elif letter == "A":
+                new_word += hom[0][::-1]
+            elif letter == "b":
+                new_word += hom[1]
+            elif letter == "B":
+                new_word += hom[1][::-1]
+    else: 
+        for letter in word:
+            if letter == "a":
+                new_word += hom[0]
+            elif letter == "A":
+                new_word += hom[0][::-1]
+            elif letter == "b":
+                new_word += hom[1]
+            elif letter == "B":
+                new_word += hom[1][::-1]
+            elif letter == "c":
+                new_word += hom[2]
+            elif letter == "C":
+                new_word += hom[2][::-1]
+    return new_word
+
+def sub_relation(relations,hom):
+    """
+    Input: A list of relations and a candidate homomorphism
+    Output: A list of images of the relations under the homorphism
+    """
+    return [substitute(word,hom) for word in relations]
+
+def reduce_dihedral(word):
+    """
+    Input: A word
+    Output: A reduced word in the infinite dihedral group
+    """
+    while word.find('xx') != -1 or word.find('yy') != -1:
+        if word.find('xx') != -1:
+            index = word.find('xx')
+            word = word[:index] + word[index + 2:]
+        if word.find('yy') != -1:
+            index = word.find('yy')
+            word = word[:index] + word[index + 2:]
+    return word
+
+def candidate_hom(num_generators):
+    """
+    Input: 
+    Output:
+    """
+    if num_generators == 2:
+        return [["x","y"],["x","xy"],["xy","x"]]
+    else:
+        return [["y","x","x"],["x","y","x"],["x","x","y"]] + [["xy","x","x"],["x","xy","x"],["x","x","xy"]] + [["x","xy","xy"],["xy","x","xy"],["xy","xy","x"]] + [["x","y","xy"],["y","xy","x"],["xy","x","y"],["x","xy","y"],["xy","y","x"],["y","x","xy"]] + [["x","y","yx"],["y","yx","x"],["yx","x","y"],["x","yx","y"],["yx","y","x"],["y","x","yx"]]
+
+def is_trivial(word):
+    """
+    Input: A word
+    Output: True if the word is empty False otherwise
+    """
+    if len(word) == 0:
+        return True
+    else:
+        return False
+
+def is_relations_hold(hom_relations):
+    """
+    Input: the set relations after applying the homomorphism
+    Output: True if all relations are trivial
+    """
+    check = True
+    for word in hom_relations:
+        check = check and is_trivial(reduce_dihedral(word))
+    return check
+
+def is_Dinfty_quotient(name):
+    """
+    Input:
+    Output:
+    """
+    M = snappy.Manifold(name)
+    G = M.fundamental_group()
+    num_generators = len(G.generators())
+    relations = G.relators()
+    hom_list = candidate_hom(num_generators)
+
+    check = False
+    for hom in hom_list:
+        hom_relations = sub_relation(relations,hom)
+        check = check or is_relations_hold(hom_relations)
+
+    return check 
   
 def write_QHS3(file_name):
   """
@@ -108,6 +210,66 @@ def write_QHS3(file_name):
           open_file.write("| " + name + " | " + volume + " | " + homology + " | " + "No" + " | " + " |\n")
 write_QHS3("HakenList.txt")
 
+from multiprocessing import Process, Queue
+import time
+
+def _worker(func, args, queue):
+    try:
+        result = func(*args)
+        queue.put(("result", result))
+    except Exception as e:
+        queue.put(("error", e))
+
+
+def run_with_timeout(func, *args, timeout):
+    queue = Queue()
+    process = Process(
+        target=_worker,
+        args=(func, args, queue)
+    )
+
+    process.start()
+    process.join(timeout)
+
+    if process.is_alive():
+        process.terminate()
+        process.join()
+        raise TimeoutError(f"Function exceeded {timeout} seconds")
+
+    status, value = queue.get()
+    if status == "error":
+        raise value
+    return value
+
+def SL2_char_var_ideals(name):
+    """
+    Input:  The name of a manifold from the Hodson Weeks census
+    Output: The dimension of the SL2C character variety of the manifold
+    """
+    M = snappy.Manifold(name)
+    G = M.fundamental_group()
+    I = G.character_variety_vars_and_polys("as_ideals")
+    return I
+
+def SL2_char_var_dim(ideal):
+    return I
+
+for data in EQN_List:
+    name = data[0]
+    ideal = data[1]
+    print(name)
+    if ideal == "Time out!":
+        with open("SL2_Char_Var_Dim.txt","a") as open_file:
+            open_file.write(name + " " + "Equation timed out!\n")    
+    else:
+        try:
+            result = run_with_timeout(SL2_char_var_dim,ideal, timeout=5)
+            with open("SL2_Char_Var_Dim.txt","a") as open_file:
+                open_file.write(name + " " + str(result) + "\n")
+        except TimeoutError as e:
+            with open("SL2_Char_Var_Dim.txt","a") as open_file:
+                open_file.write(name + " " + "Dimension timed out!\n")  
+
 def find_nth_occurrence(str, char, n):
     start = str.find(char)
     while start >= 0 and n > 1:
@@ -118,13 +280,13 @@ def find_nth_occurrence(str, char, n):
 with open("Haken_QHS3_data.txt", "r") as open_file1:
     line_lists1 = open_file1.readlines()
 
-with open("SL2_Char_Var_Dim", "r") as open_file2:
+with open("SL2_Char_Var_Dim.txt", "r") as open_file2:
     line_lists2 = open_file2.readlines()
 
-for line in line_lists1:
-    find_nth_occurrence(line, "|", 5)
+len(line_lists1) == len(line_lists2)
+
     
     
 
-write_QHS3("HakenList.txt")
+
   
