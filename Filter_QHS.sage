@@ -34,6 +34,10 @@ def is_QHS3(name):
   else:
     return False
 
+"""
+The following functions are used to test whether pi1 has infinite dihedral quotient  
+"""
+
 def elem_div_factor(name):
   """
   Input: The name of a 3-manifold
@@ -75,8 +79,6 @@ def filter_QHS3(file_name):
   mfld_list = read_name(file_name)
 
   return [name for name in mfld_list if is_QHS3(name)]
-
-# import Filter_QHS3.sage
 
 def substitute(word,hom):
     """
@@ -178,7 +180,7 @@ def is_Dinfty_quotient(name):
         check = check or is_relations_hold(hom_relations)
 
     return check 
-  
+
 def write_QHS3(file_name):
   """
   Input: The name of the file containing the list of 3-manifolds from the census. Assume they are all orientable
@@ -209,6 +211,10 @@ def write_QHS3(file_name):
         with open("Haken_QHS3_data.txt", "a") as open_file: 
           open_file.write("| " + name + " | " + volume + " | " + homology + " | " + "No" + " | " + " |\n")
 write_QHS3("HakenList.txt")
+
+"""
+The following functions are used to compute the ideal of character variety of pi1
+"""
 
 from multiprocessing import Process, Queue
 import time
@@ -250,6 +256,10 @@ def SL2_char_var_ideals(name):
     G = M.fundamental_group()
     I = G.character_variety_vars_and_polys("as_ideals")
     return I
+
+"""
+The following functions are used to compute the dimension of the character variety and write it into the file. 
+"""
 
 def SL2_char_var_dim(ideal_char):
     return ideal_char.dimension()
