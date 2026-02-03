@@ -1,5 +1,5 @@
 ## Compute properties of Haken manifolds from the Hodson Weeks census
 
-In this project, we compute and record various properties of Haken QHS^3  from the Hodson--Weeks census. The file Haken.list
+In this project, we compute and record various properties of Haken QHS^3 from the Hodson--Weeks census. [The file](https://github.com/Khanh-LeCoder/HodsonWeeksHakenProperties/blob/main/HakenList.txt) contains the list of Haken 3-manifold from the Hodgson Weeks census. The software Regina was used to certify Hakeness of these manifolds. We note that a few Haken manifold maybe missing from the list.
 
 1. The first 
