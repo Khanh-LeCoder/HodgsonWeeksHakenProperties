@@ -2248,39 +2248,39 @@
 | v3526(-5,1) | 6.25890770832218 | Z/2 + Z/4 | No |  Dimension error! |  |
 | v3491(-2,3) | 6.25998258632731 | Z/2 + Z/38 | No |  Dimension error! |  |
 | v3513(-5,2) | 6.26041377540677 | Z/69 | No |  Dimension error! |  |
-| v3516(-2,3) | 6.26391493118725 | Z/3 + Z/18 | No |  d out! | No equation |
+| v3516(-2,3) | 6.26391493118725 | Z/3 + Z/18 | No |  Equation timed out! | No equation |
 | v3526(2,3) | 6.26669929732179 | Z/2 + Z/2 + Z/6 | Yes |  d out! | No equation |
-| v3532(3,2) | 6.26726282544836 | Z/23 | No |  d out! | No equation |
+| v3532(3,2) | 6.26726282544836 | Z/23 | No |  Equation timed out! | No equation |
 | v3526(-1,3) | 6.26863244302945 | Z/2 + Z/12 | No |  Dimension error! |  |
 | v3517(1,4) | 6.27243168894716 | Z/3 | No |  Dimension error! |  |
-| v3521(1,3) | 6.28340532487716 | Z/9 | No |  d out! | No equation |
+| v3521(1,3) | 6.28340532487716 | Z/9 | No |  Equation timed out! | No equation |
 | v3517(-1,4) | 6.28367542569838 | Z/3 + Z/9 | No |  Dimension error! |  |
-| v3533(-2,3) | 6.28394747270761 | Z/60 | No |  d out! | No equation |
-| v3516(-5,2) | 6.28440588114043 | Z/69 | No |  d out! | No equation |
-| v3520(1,3) | 6.28754690923051 | Z/73 | No |  d out! | No equation |
+| v3533(-2,3) | 6.28394747270761 | Z/60 | No |  Equation timed out! | No equation |
+| v3516(-5,2) | 6.28440588114043 | Z/69 | No |  Equation timed out! | No equation |
+| v3520(1,3) | 6.28754690923051 | Z/73 | No |  Equation timed out! | No equation |
 | v3516(-6,1) | 6.28817200685213 | Z/66 | No |  Dimension error! |  |
 | v3531(3,2) | 6.28872048205229 | 0 | No |  d out! | No equation |
 | v3514(5,2) | 6.29018090169507 | Z/3 + Z/9 | No |  Dimension error! |  |
-| v3514(1,3) | 6.29233532254054 | Z/21 | No |  d out! | No equation |
+| v3514(1,3) | 6.29233532254054 | Z/21 | No |  Equation timed out! | No equation |
 | v3513(-4,3) | 6.29440700711363 | Z/51 | No |  Dimension error! |  |
-| v3513(2,3) | 6.29674446495967 | Z/39 | No |  d out! | No equation |
-| v3515(2,3) | 6.29855230882021 | Z/24 | No |  d out! | No equation |
-| v3515(-5,2) | 6.29899386707853 | Z/3 | No |  d out! | No equation |
-| v3531(-5,2) | 6.30235582777197 | Z/25 | No |  d out! | No equation |
+| v3513(2,3) | 6.29674446495967 | Z/39 | No |  Equation timed out! | No equation |
+| v3515(2,3) | 6.29855230882021 | Z/24 | No |  Equation timed out! | No equation |
+| v3515(-5,2) | 6.29899386707853 | Z/3 | No |  Equation timed out! | No equation |
+| v3531(-5,2) | 6.30235582777197 | Z/25 | No |  Equation timed out! | No equation |
 | v3520(2,3) | 6.30614524276775 | Z/71 | No |  Dimension error! |  |
-| v3521(-4,3) | 6.31445081608054 | Z/51 | No |  d out! | No equation |
+| v3521(-4,3) | 6.31445081608054 | Z/51 | No |  Equation timed out! | No equation |
 | v3509(-4,1) | 6.31498658856873 | Z/4 + Z/16 | No |  Dimension error! |  |
 | v3511(-4,3) | 6.31498658856873 | Z/4 + Z/24 | No |  Dimension error! |  |
 | v3510(-4,1) | 6.31498658856873 | Z/4 + Z/28 | No |  Dimension error! |  |
 | v3508(-4,3) | 6.31498658856873 | Z/8 + Z/16 | No |  Dimension error! |  |
 | v3514(2,3) | 6.31507738484371 | Z/24 | No |  Dimension error! |  |
-| v3520(-1,3) | 6.32571084797373 | Z/77 | No |  d out! | No equation |
-| v3514(-1,3) | 6.32828801796619 | Z/15 | No |  d out! | No equation |
-| v3516(2,3) | 6.32878082998578 | Z/3 + Z/6 | No |  d out! | No equation |
+| v3520(-1,3) | 6.32571084797373 | Z/77 | No |  Equation timed out! | No equation |
+| v3514(-1,3) | 6.32828801796619 | Z/15 | No |  Equation timed out! | No equation |
+| v3516(2,3) | 6.32878082998578 | Z/3 + Z/6 | No |  Equation timed out! | No equation |
 | v3526(-2,3) | 6.34358825446765 | Z/2 + Z/2 + Z/6 | No |  Dimension error! |  |
 | v3536(-6,1) | 6.35672112243521 | Z/8 | No |  Dimension error! |  |
 | v3522(5,1) | 6.35742411671075 | Z/53 | No |  Dimension error! |  |
 | v3526(5,2) | 6.35860339888905 | Z/2 + Z/8 | No |  Dimension error! |  |
-| v3532(1,3) | 6.36024118849881 | Z/24 | No |  d out! |  |
+| v3532(1,3) | 6.36024118849881 | Z/24 | No |  Equation timed out! |  |
 | v3532(-4,3) | 6.39738244557703 | Z/9 | No |  Equation timed out! | No equation |
 | v3531(-2,3) | 6.42364194559050 | Z/21 | No |  Dimension error! |  |
