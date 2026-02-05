@@ -133,15 +133,21 @@ def reduce_dihedral(word):
             word = word[:index] + word[index + 2:]
     return word
 
+def 
+
 def candidate_hom(num_generators):
     """
-    Input: 
-    Output:
+    Input: The number of generator which has to be either 2 or 3
+    Output: The candidate homomorphisms from F2 or F3 onto the group C2 * C2 = <x,y|x^2,y^2> 
     """
     if num_generators == 2:
+        # the first generator is either x or xy to be onto up to relabeling x and y (no need to consider y or yx).
+        # The case [x, ]: the second entry is y or xy since [x,yx] is conjugate to [x,xy].
+        # The case [xy,]: the second entry is x or y. But [xy,y] becomes [yx,x] by symmetry and [xy,x] by conjugation.
         return [["x","y"],["x","xy"],["xy","x"]]
     else:
-        return [["y","x","x"],["x","y","x"],["x","x","y"]] + [["xy","x","x"],["x","xy","x"],["x","x","xy"]] + [["x","xy","xy"],["xy","x","xy"],["xy","xy","x"]] + [["x","y","xy"],["y","xy","x"],["xy","x","y"],["x","xy","y"],["xy","y","x"],["y","x","xy"]] + [["x","y","yx"],["y","yx","x"],["yx","x","y"],["x","yx","y"],["yx","y","x"],["y","x","yx"]]
+        # currently missing some cases where the image of a generator is trivial. 
+        return [["x","y",""],["y","x","x"],["x","y","x"],["x","x","y"]] + [["xy","x","x"],["x","xy","x"],["x","x","xy"]] + [["x","xy","xy"],["xy","x","xy"],["xy","xy","x"]] + [["x","y","xy"],["y","xy","x"],["xy","x","y"],["x","xy","y"],["xy","y","x"],["y","x","xy"]] + [["x","y","yx"],["y","yx","x"],["yx","x","y"],["x","yx","y"],["yx","y","x"],["y","x","yx"]]
 
 def is_trivial(word):
     """
